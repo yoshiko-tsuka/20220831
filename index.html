@@ -31,8 +31,8 @@
     <!-- Signup Form -->
     <!-- TODO: create submit and prevent postback -->
     <!-- bind to model -->
-    <div id="signup-form">
-        <form method="post" action="#" @submit.prevent="submit">
+    <div id="app">
+      <form id="signup-form" method="post" action="#" @submit.prevent="submit">
         <input
             type="email"
             name="email"
@@ -42,8 +42,8 @@
         />
         <input type="submit" value="Sign Up" />
         <!-- TODO: add visible as class if isVisible= true -->
-        <span class="message success">Thank you!</span>
-        </form>
+        <span class="message success" :class="{visible:isVisible}">Thank you!</span>
+      </form>
     </div>
     <!-- <span class="message success">Thank you!</span> -->
 
@@ -83,7 +83,7 @@
     <script> 
       // TODO: instantiate vue and add behavior
       new Vue({
-        el: "#signup-form",
+        el: "#app",
         data: function () {
           return {
             isVisible: false,
@@ -96,11 +96,11 @@
               method: "POST",
               body: { email: this.email }
             })
-              .then((resp) => {
-                this.isVisible = true;
-                this.email = "";
-              })
-              .catch((err) => console.err("error:", err));
+            .then((resp) => {
+              this.isVisible = true;
+              this.email = "";
+            })
+            .catch((err) => console.err("error:", err));
           }
         }
       });
